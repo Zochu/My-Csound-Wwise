@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PluginModule>
+  <SourcePlugin Name="CsoundWwiseSource" CompanyID="64" PluginID="0">
+    <PluginInfo>
+      <PlatformSupport>
+        <Platform Name="Any"></Platform>
+      </PlatformSupport>
+    </PluginInfo>
+    <Properties>
+
+	<Property Name="Pan" Type="Real32" SupportRTPCType="Exclusive" DisplayName="Pan">
+		<UserInterface Step="0.01" Fine="3" Decimals="2"/>
+		<DefaultValue>0.5</DefaultValue>
+		<AudioEnginePropertyID>0</AudioEnginePropertyID>
+		<Restrictions>
+			<ValueRestriction>
+				<Range Type="Real32">
+					<Min>0</Min>
+					<Max>1</Max>
+				</Range>
+			</ValueRestriction>
+		</Restrictions>
+	</Property>
+
+	<Property Name="Gain" Type="Real32" SupportRTPCType="Exclusive" DisplayName="Gain">
+		<UserInterface Step="0.01" Fine="3" Decimals="2"/>
+		<DefaultValue>0.500000</DefaultValue>
+		<AudioEnginePropertyID>1</AudioEnginePropertyID>
+		<Restrictions>
+			<ValueRestriction>
+				<Range Type="Real32">
+					<Min>0.000000</Min>
+					<Max>1.000000</Max>
+				</Range>
+			</ValueRestriction>
+		</Restrictions>
+	</Property>
+
+      <Property Name="Freq" Type="int32" SupportRTPCType="Exclusive" DisplayName="Freq">
+        <UserInterface Step="20" Fine="10" Decimals="0"/>
+        <DefaultValue>440</DefaultValue>
+        <AudioEnginePropertyID>2</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>20</Min>
+              <Max>20000</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+
+      
+    </Properties>
+  </SourcePlugin>
+</PluginModule>

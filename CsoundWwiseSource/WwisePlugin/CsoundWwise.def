@@ -1,0 +1,4 @@
+LIBRARY "CsoundWwise"
+
+EXPORTS
+  AkCreatePlugin
