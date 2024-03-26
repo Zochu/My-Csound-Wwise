@@ -94,3 +94,6 @@ template <AkUInt32 T_MAXNUMPARAMS> void CsoundParameterChangeHandler <T_MAXNUMPA
 {
     m_uParamBitArray.resize(size);
 }
+
+// Explicit instantiation of member functions for template parameter <1>
+//template class CsoundParameterChangeHandler<1>;

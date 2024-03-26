@@ -28,12 +28,14 @@ the specific language governing permissions and limitations under the License.
 #define CsoundWwiseSourceParams_H
 
 #include <AK/SoundEngine/Common/IAkPlugin.h>
+//#include "../../Common/CsoundParameterChangeHandler.cpp"
 #include <AK/Plugin/PluginServices/AkFXParameterChangeHandler.h>
+#include "../../Common/ParameterManager.h"
 
 // Add parameters IDs here, those IDs should map to the AudioEnginePropertyID
 // attributes in the xml property definition.
-static const AkPluginParamID PARAM_DURATION_ID = 0;
-static const AkUInt32 NUM_PARAMS = 1;
+//static const AkPluginParamID PARAM_DURATION_ID = 1;
+//static const AkUInt32 NUM_PARAMS = 1;
 
 struct CsoundWwiseRTPCParams
 {
@@ -69,6 +71,7 @@ struct CsoundWwiseSourceParams
     AKRESULT SetParam(AkPluginParamID in_paramID, const void* in_pValue, AkUInt32 in_ulParamSize) override;
 
     AK::AkFXParameterChangeHandler<NUM_PARAMS> m_paramChangeHandler;
+    //CsoundParameterChangeHandler<NUM_PARAMS> m_csoundParamChangeHandler;
 
     CsoundWwiseRTPCParams RTPC;
     CsoundWwiseNonRTPCParams NonRTPC;

@@ -41,7 +41,7 @@ AKRESULT CsoundWwiseSource::Init(AK::IAkPluginMemAlloc* in_pAllocator, AK::IAkSo
 
     m_csoundManager = m_pParams->GetCsoundManager();
     in_rFormat.channelConfig.SetStandard(m_csoundManager->GetChannelMask());
-    m_durationHandler.Setup(Constants::Duration, Constants::LoopCount, in_rFormat.uSampleRate);
+    m_durationHandler.Setup(m_pParams->fDuration, in_pContext->GetNumLoops(), in_rFormat.uSampleRate);
 
     return AK_Success;
 }
@@ -54,6 +54,7 @@ AKRESULT CsoundWwiseSource::Term(AK::IAkPluginMemAlloc* in_pAllocator)
 
 AKRESULT CsoundWwiseSource::Reset()
 {
+    m_csoundManager->Compile();
     return AK_Success;
 }
 
@@ -69,8 +70,8 @@ void CsoundWwiseSource::Execute(AkAudioBuffer* out_pBuffer)
 {
     //Check if parameters have changed since last call and inform Csound
     m_pParams->HandleParameterChange(m_csoundManager);
-
-    m_durationHandler.SetDuration(Constants::Duration);
+    m_durationHandler.SetDuration(m_pParams->fDuration);
+    //m_durationHandler.SetDuration(Constants::Duration);
     m_durationHandler.ProduceBuffer(out_pBuffer);
 
     m_csoundManager->Process(out_pBuffer);

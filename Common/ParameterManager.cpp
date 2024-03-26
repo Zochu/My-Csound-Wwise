@@ -3,6 +3,7 @@
 #include <string>
 #include "CSDParser.hpp"
 #include "Utility.hpp"
+//#include "CsoundParameterChangeHandler.hpp"
 
 ParameterManager::ParameterManager()
 {
@@ -13,6 +14,8 @@ ParameterManager::ParameterManager()
     //Initialize Csound
     m_csoundManager->Init();
     m_Compiled = m_csoundManager->Compile();
+
+    fDuration = 0.0f;
 
     if (m_Compiled)
     {
@@ -25,6 +28,7 @@ ParameterManager::ParameterManager()
 
 ParameterManager::ParameterManager(const ParameterManager& in_rParams)
 {
+    fDuration = in_rParams.fDuration;
     *this = in_rParams;
 }
 
@@ -39,6 +43,7 @@ AKRESULT ParameterManager::Init(AK::IAkPluginMemAlloc* in_pAllocator, const void
 {
     if (in_uBlockSize == 0)
     {
+        fDuration = 0.0f;
         m_ParamChangeHandler.SetAllParamChanges();
         return AK_Success;
     }
@@ -58,6 +63,7 @@ AKRESULT ParameterManager::SetParamsBlock(const void* in_pParamsBlock, AkUInt32 
     AkUInt8* pParamsBlock = (AkUInt8*)in_pParamsBlock;
 
     // Read bank data for each parameter
+    fDuration = READBANKDATA(AkReal32, pParamsBlock, in_ulBlockSize);
     for (Parameter& p : m_Parameters)
     {
         p.SetValue(READBANKDATA(AkReal32, pParamsBlock, in_uBlockSize));
@@ -74,10 +80,20 @@ AKRESULT ParameterManager::SetParam(AkPluginParamID in_paramID, const void* in_p
 {
     AKRESULT eResult = AK_Success;
 
+    /*if (in_paramID == PARAM_DURATION_ID)
+    {
+        fDuration = *((AkReal32*)in_pValue);
+        m_ParamChangeHandler.SetParamChange(PARAM_DURATION_ID);
+    }*/
+
     for (Parameter& p : m_Parameters)
     {
         if (p.GetID() == in_paramID)
         {
+            if (in_paramID == PARAM_DURATION_ID)
+            {
+                fDuration = *((AkReal32*)in_pValue);
+            }
             //Set the Parameters new Value
             p.SetValue(*((AkReal32*)in_pValue));
 

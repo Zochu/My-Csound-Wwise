@@ -9,10 +9,16 @@
 #include <AK/SoundEngine/Common/IAkPlugin.h>
 #include <AK/Plugin/PluginServices/AkFXParameterChangeHandler.h>
 #include "CsoundParameterChangeHandler.hpp"
+#include "CsoundParameterChangeHandler.cpp"
 
 static const AkPluginParamID PARAM_DURATION_ID = 0;
 static const AkUInt32 NUM_PARAMS = 1;
 
+
+struct RTPCParams
+{
+	AkReal32 fDuration;
+};
 
 class ParameterManager : public AK::IAkPluginParam
 {
@@ -33,6 +39,9 @@ public:
 	void SetParameters(std::vector<Parameter>& params);
 	bool IsCompiled() { return m_Compiled; }
 	std::shared_ptr<CsoundManager>& GetCsoundManager() { return m_csoundManager; };
+
+	AkReal32 fDuration;
+	RTPCParams RTPC;
 
 private:
 	bool m_Compiled;

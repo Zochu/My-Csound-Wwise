@@ -5,7 +5,9 @@
 #include "../../Common/CsoundManager.hpp" 
 #include <AK/Plugin/PluginServices/AkFXDurationHandler.h>
 
-#include "csound.hpp"
+//#include "csound.hpp"
+#include "C:\Program Files\Csound6_x64\include\csound\csound.hpp"
+#include "CsoundWwiseSourceParams.h"
 #include <memory>
 
 
@@ -42,6 +44,7 @@ public:
 
 private:
     ParameterManager* m_pParams;
+    //CsoundWwiseSourceParams* m_wwiseParm;
 
     AK::IAkPluginMemAlloc* m_pAllocator;
     AK::IAkSourcePluginContext* m_pContext;

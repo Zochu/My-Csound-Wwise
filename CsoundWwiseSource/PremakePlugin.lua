@@ -95,6 +95,19 @@ Plugin.authoring.files =
     "CsoundWwise.h",
     "CsoundWwise.def",
     "CsoundWwise.xml",
+    "../Commom/Constants.hpp",
+    "../Commom/CSDParser.cpp",
+    "../Commom/CSDParser.hpp",
+    "../Commom/CsoundManager.cpp",
+    "../Commom/CsoundManager.hpp",
+    "../Commom/CsoundParameterChangeHandler.cpp",
+    "../Commom/CsoundParameterChangeHandler.hpp",
+    "../Commom/Parameter.cpp",
+    "../Commom/Parameter.hpp",
+    "../Commom/ParameterManager.cpp",
+    "../Commom/ParameterManager.h",
+    "../Commom/Utility.cpp",
+    "../Commom/Utility.hpp",
 }
 Plugin.authoring.excludes =
 {

@@ -25,7 +25,6 @@ the specific language governing permissions and limitations under the License.
 *******************************************************************************/
 
 #include "CsoundWwiseSourceParams.h"
-
 #include <AK/Tools/Common/AkBankReadHelpers.h>
 
 CsoundWwiseSourceParams::CsoundWwiseSourceParams()
