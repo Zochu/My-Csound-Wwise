@@ -19,7 +19,9 @@ public:
 	AkChannelMask GetChannelMask();
 
 	bool Ready();
+	void SendEvent(AkReal32 duration);
 	void Perform();
+	void Stop();
 
 	void Process(AkAudioBuffer* out_pBuffer, bool IsEffect = false);
 private:

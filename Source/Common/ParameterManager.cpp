@@ -63,7 +63,7 @@ AKRESULT ParameterManager::SetParamsBlock(const void* in_pParamsBlock, AkUInt32 
     AkUInt8* pParamsBlock = (AkUInt8*)in_pParamsBlock;
 
     // Read bank data for each parameter
-    fDuration = READBANKDATA(AkReal32, pParamsBlock, in_ulBlockSize);
+    fDuration = READBANKDATA(AkReal32, pParamsBlock, in_uBlockSize);
     for (Parameter& p : m_Parameters)
     {
         p.SetValue(READBANKDATA(AkReal32, pParamsBlock, in_uBlockSize));

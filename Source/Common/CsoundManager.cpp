@@ -32,6 +32,8 @@ void CsoundManager::Init()
 	m_csound->SetOption((char*)"-n");
 	m_csound->SetOption((char*)"-d");
 	m_csound->SetOption((char*)"-b0");
+
+	
 }
 
 bool CsoundManager::Compile()
@@ -72,10 +74,21 @@ bool CsoundManager::Ready()
 	return (m_csIndex >= m_csdKsmps);
 }
 
+void CsoundManager::SendEvent(AkReal32 duration)
+{
+	m_csound->InputMessage(("i1 0 " + std::to_string(duration)).c_str());
+}
+
 void CsoundManager::Perform()
 {
 	m_csound->PerformKsmps();
 	m_csIndex = 0;
+}
+
+void CsoundManager::Stop()
+{
+	m_csound->Stop();
+	m_csound->Cleanup();
 }
 
 void CsoundManager::Process(AkAudioBuffer* out_pBuffer, bool IsEffect)
@@ -99,6 +112,7 @@ void CsoundManager::Process(AkAudioBuffer* out_pBuffer, bool IsEffect)
 		++WwiseSampleIndex;
 		++m_csIndex;
 	}
+	
 }
 
 #pragma endregion

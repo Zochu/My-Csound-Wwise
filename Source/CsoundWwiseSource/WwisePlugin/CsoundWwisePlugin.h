@@ -3,8 +3,13 @@
 #include <windows.h>
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
 #include <atlstr.h>
+#include <fstream>
+#include <string>
+#include <vector>
 
 #include <AK/Wwise/AudioPlugin.h>
+//#include <AK/Wwise/Plugin.h>
+#include "../../Common/Utility.hpp"
 
 /// See https://www.audiokinetic.com/library/edge/?source=SDK&id=plugin__dll.html
 /// for the documentation about Authoring plug-ins
@@ -30,4 +35,13 @@ public:
 
 private:
     AK::Wwise::IPluginPropertySet* m_pPSet;
+    std::vector<LPCWSTR> m_propertyNames;
+    std::string m_CSDpath;
+
+    std::string TrimName(const std::string& str);
+    LPCWSTR StringToLPCWSTR(const std::string_view& str);
+    void GetPropertyNames();
+    void Parse();
+    void ProcessLine(const std::string& line);
+    std::string_view GetPropertyValue(std::string_view text, std::string_view property, const char& startDelimiter, const char& endDelimiter);
 };

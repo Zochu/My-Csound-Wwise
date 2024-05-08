@@ -17,7 +17,7 @@ AK::IAkPluginParam* CreateCsoundWwiseSourceParams(AK::IAkPluginMemAlloc* in_pAll
     return AK_PLUGIN_NEW(in_pAllocator, ParameterManager());
 }
 
-AK_IMPLEMENT_PLUGIN_FACTORY(CsoundWwiseSource, AkPluginTypeSource, CsoundWwiseConfig::CompanyID, Utility::GetIDFromXML())
+AK_IMPLEMENT_PLUGIN_FACTORY(CsoundWwiseSource, AkPluginTypeSource, CsoundWwiseConfig::CompanyID,Utility::GetIDFromXML())
 
 CsoundWwiseSource::CsoundWwiseSource()
     : m_pParams(nullptr)
@@ -42,6 +42,7 @@ AKRESULT CsoundWwiseSource::Init(AK::IAkPluginMemAlloc* in_pAllocator, AK::IAkSo
     m_csoundManager = m_pParams->GetCsoundManager();
     in_rFormat.channelConfig.SetStandard(m_csoundManager->GetChannelMask());
     m_durationHandler.Setup(m_pParams->fDuration, in_pContext->GetNumLoops(), in_rFormat.uSampleRate);
+    m_csoundManager->SendEvent(m_pParams->fDuration);
 
     return AK_Success;
 }
@@ -54,7 +55,7 @@ AKRESULT CsoundWwiseSource::Term(AK::IAkPluginMemAlloc* in_pAllocator)
 
 AKRESULT CsoundWwiseSource::Reset()
 {
-    m_csoundManager->Compile();
+    //m_csoundManager->Stop();
     return AK_Success;
 }
 
